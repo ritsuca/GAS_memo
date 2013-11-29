@@ -1,0 +1,25 @@
+#用途
+Googleフォームで申込→受領通知メールを申込者と受付側の双方に自動送信したい，というもの。
+
+
+#参考
+1. http://d.hatena.ne.jp/yuichi_katahira/20120725/1343200049
+2. http://mypleis.blogspot.com/2012/08/googlegmail.html
+3. http://nevernoteit1419.blogspot.com/2012/01/blog-post_25.html
+4. https://developers.google.com/apps-script/reference/mail/mail-app
+
+
+#自分の設定等
+・フォームを作成。回答送信後の回答編集は許可しない
+・対応するスプレッドシートのツール→スクリプトエディタにスクリプトを貼りつけ
+・トリガーは，フォームからの回答があり次第。失敗通知も，即時送信: 回答後の編集を許可する場合は，トリガーはスプレッドシートが更新され次第とかに変えた方がよいと思う
+・BCCに受付側のメールアドレスを追加
+
+
+#試してみて
+・なぜか改行がうまくいかない（＠Gmailでの受信）ので，改行コード「\n」の前に「\r」を追加するという手段を教わる（ありがとうMassr）
+・noReply(Boolean)は GoogleApps 使ってないとダメ＝つまり個人アカウントでは使用不可能な設定なので，aaa@google.comから送信されたということにしたくない場合は，使用する予定のメールアドレスでGoogleのアカウントをとる（たとえばaaa＠hatena.comでログインできるようにする）のが一番手っ取り早いのかも。Gmailを有効にしなくても，フォームの回答自動送信機能は使えるので問題ない
+・replyTo(String)の設定は，たぶんなくても大丈夫。明示的にしておいた方がいいのかなと思って入れてるけど…自分の場合は，お守り代わりのようなもの
+
+#Gists
+https://gist.github.com/ritsuca/7701686
